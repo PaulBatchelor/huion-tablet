@@ -10,6 +10,8 @@
 #define Y_AXIS 1
 #define PRESSURE 0x18 
 
+#define IS_TOUCHING
+
 enum {
     P_X,
     P_Y,
@@ -37,6 +39,12 @@ int main()
                 case PRESSURE:
                     data[P_Z] = (float)((msg[MSB] << 8) + msg[LSB]) / 0x7ff;
                     break;
+                default:
+                    break;
+            }
+        } else if(msg[TYPE] == 1) {
+            switch(msg[SUBTYPE]) {
+                case 0x4a
                 default:
                     break;
             }

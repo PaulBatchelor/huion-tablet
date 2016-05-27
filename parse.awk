@@ -5,12 +5,12 @@
     # Pressure
     # if ($18 == 3 && $20 == 18) {
     # y axis
-    # if ($18 == 3 && $20 == 1) {
+    #if ($18 == 3 && $20 == 1) {
     # x axis
-    if ($18 == 3 && $20 == 0) {
+    # if ($18 == 3 && $20 == 0) {
 
     # mouse press on/off tablet hits page
-    #if ($18 == 1 && $20 == "4a") {
+    if ($18 == 1 && $20 == "4a") {
    
     # buttom button kind of? 
     # if ($18 == 1 && $20 == "4b") {
