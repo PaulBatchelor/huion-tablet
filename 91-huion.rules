@@ -1,0 +1,2 @@
+ATTRS{manufacturer}=="HUION", MODE="0777"
+
