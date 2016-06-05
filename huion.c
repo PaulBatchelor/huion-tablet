@@ -14,6 +14,7 @@
 #define Y_AXIS 1
 #define PRESSURE 0x18 
 #define CONTACT 0x4a
+#define TOP_BUTTON 0x4c
 
 /* 
  * To compile (on linux):
@@ -25,7 +26,8 @@ enum {
     P_X,
     P_Y,
     P_Z,
-    P_CONTACT
+    P_CONTACT,
+    P_TOP_BUTTON
 };
 
 typedef struct {
@@ -69,6 +71,9 @@ static void *listen(void *ud)
             switch(msg[SUBTYPE]) {
                 case CONTACT:
                     data[P_CONTACT] = (float)msg[LSB];
+                    break;
+                case TOP_BUTTON:
+                    data[P_TOP_BUTTON] = (float)msg[LSB];
                     break;
                 default:
                     break;
@@ -124,7 +129,7 @@ static int sporth_huion(plumber_data *pd, sporth_stack *stack, void **ud)
             str = sporth_stack_pop_string(stack);
             hd = malloc(sizeof(huion_d));
             *ud = hd;
-            sp_ftbl_create(pd->sp, &hd->data, 4);
+            sp_ftbl_create(pd->sp, &hd->data, 8);
             plumber_ftmap_add(pd, str, hd->data);
             free(str);
             huion_start(hd);

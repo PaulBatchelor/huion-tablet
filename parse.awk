@@ -10,13 +10,13 @@
     # if ($18 == 3 && $20 == 0) {
 
     # mouse press on/off tablet hits page
-    if ($18 == 1 && $20 == "4a") {
+    # if ($18 == 1 && $20 == "4a") {
    
     # buttom button kind of? 
     # if ($18 == 1 && $20 == "4b") {
 
     # both buttons when the pen is down
-    #if ($18 == 1 && $20 == "4c") {
+    if ($18 == 1 && $20 == "4c") {
     #if ($18 != 3 && $18 != 0) {
         #for(i = 22; i < 24; i++) printf $(i) " "
         print $23 $22

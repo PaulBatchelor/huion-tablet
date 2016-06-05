@@ -43,11 +43,6 @@ int main()
                     break;
             }
         } else if(msg[TYPE] == 1) {
-            switch(msg[SUBTYPE]) {
-                case 0x4a
-                default:
-                    break;
-            }
         }
         //printf("%g %g\n", msg[TYPE], (msg[MSB] << 8) +  msg[LSB]);
         printf("x:%g\ty:%g\tz:%g\t\n", data[P_X], data[P_Y], data[P_Z]);

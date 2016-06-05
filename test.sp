@@ -2,7 +2,7 @@ _huion "./huion.so" fl
 
 'test' _huion fe
 
-0 'test' tget 100 1000 scale 
+0 'test' tget 200 1000 scale 
 1 1 'test' tget - 0.0 0.4 scale 
 1
 1
