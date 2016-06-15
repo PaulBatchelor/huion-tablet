@@ -5,18 +5,21 @@
 #include <stdlib.h>
 #include <soundpipe.h>
 #include <sporth.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
-#define TYPE 16
-#define SUBTYPE 18
-#define MSB 21
-#define LSB 20
+#define TYPE 8
+#define SUBTYPE 10
+#define MSB 13
+#define LSB 12
 #define X_AXIS 0
 #define Y_AXIS 1
-#define PRESSURE 0x18 
+#define PRESSURE 0x18
 #define CONTACT 0x4a
 #define TOP_BUTTON 0x4c
 
-/* 
+/*
  * To compile (on linux):
  * gcc -fPIC -shared huion.c -o huion.so -lsporth -lsoundpipe -lpthread
  *
@@ -40,19 +43,21 @@ typedef struct {
 
 
 
-static void *listen(void *ud) 
+static void *listen(void *ud)
 {
     huion_d *hd = ud;
 
     float *data = hd->data->tbl;
-    FILE *fp = fopen("/dev/input/by-id/usb-HUION_PenTablet-event-mouse", "rb");
+    //FILE *fp = fopen("/dev/input/by-id/usb-HUION_PenTablet-event-mouse", "rb");
+    int id = open("/dev/input/by-id/usb-HUION_PenTablet-event-mouse", O_RDONLY);
     unsigned char msg[24];
-    if(fp == NULL) {
-        printf("There was a problem reading the F310 controller. Exiting gracefully...\n");
-        return NULL;
-    }
+    //if(fp == NULL) {
+    //    printf("There was a problem reading the F310 controller. Exiting gracefully...\n");
+    //    return NULL;
+    //}
+    int i;
     while(hd->run) {
-        fread(msg, sizeof(char), 24, fp);
+        read(id, msg, 24);
         if(msg[TYPE] == 3) {
             switch(msg[SUBTYPE]) {
                 case X_AXIS:
@@ -84,7 +89,8 @@ static void *listen(void *ud)
     }
 
     fprintf(stderr, "Stopping Huion tablet...\n");
-    fclose(fp);
+    //fclose(fp);
+    close(id);
     pthread_exit(NULL);
 }
 
@@ -103,7 +109,7 @@ int huion_stop(huion_d *hd)
 }
 
 /*
-int main() 
+int main()
 {
     static huion_d hd;
     huion_start(&hd);
