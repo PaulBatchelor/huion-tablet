@@ -31,8 +31,8 @@ _huion fc
 # 0 2 0.1 1 sine 2 10 biscale randi 0 pset
 
 1 'test' tget 0 3 scale 0 pset
-0 'test' tget 24.5 60.5 scale mtof 1 pset
-#0 'test' tget 62 74 scale 0.003 port mtof 1 pset
+#0 'test' tget 24.5 60.5 scale mtof 1 pset
+0 'test' tget 62 74 scale 0.003 port mtof 1 pset
 
 
 # 110 200 0.8 1 sine 2 8 biscale randi 3 20 30 jitter  
