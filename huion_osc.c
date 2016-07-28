@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <lo/lo.h>
 
 #define TYPE 16
 #define SUBTYPE 18
@@ -20,11 +21,20 @@ enum {
 
 float data[3];
 
-int main() 
+int main(int argc, char *argv[]) 
 {
+    int counter = 0;
     memset(data, 0, sizeof(float) * 3);
     FILE *fp = fopen("/dev/input/by-id/usb-HUION_PenTablet-event-mouse", "rb");
     unsigned char msg[24];
+    
+    lo_address t;
+    if(argc == 1) {
+        t = lo_address_new(NULL, "7770");
+    } else {
+        t = lo_address_new(argv[1], "7770");
+    }
+
     while(1) {
         fread(msg, sizeof(char), 24, fp);
         if(msg[TYPE] == 3) {
@@ -43,7 +53,10 @@ int main()
             }
         } else if(msg[TYPE] == 1) {
         }
-        printf("x:%g\ty:%g\tz:%g\t\n", data[P_X], data[P_Y], data[P_Z]);
+        if(counter == 0) 
+            lo_send(t, "/huion/pos", "fff", data[P_X], 1 - data[P_Y], data[P_Z]);
+        
+        counter = (counter + 1) % 4;
         usleep(100);
     }
 }
