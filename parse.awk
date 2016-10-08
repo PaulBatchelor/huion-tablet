@@ -26,8 +26,10 @@
     # x axis (11 bit resolution)
     # if ($18 == 3 && $20 == 2) {
     # z axis (11 bit resolution)
+    #if ($18 == 3 && $20 == 18) {
+    print $0
     if ($18 == 3 && $20 == 18) {
-        print $20, $21, $23, $22
-        printf "\n"
+        #print $20, $21, $23, $22
+        #printf "\n"
     }
 }

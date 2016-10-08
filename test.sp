@@ -3,7 +3,7 @@ _huion "./huion.so" fl
 'test' _huion fe
 
 0 'test' tget 200 1000 scale 
-1 1 'test' tget - 0.0 0.4 scale 
+1 1 'test' tget - 0.0 0.4 scale "amp" print
 1
 1
 2 'test' tget 0.005 port 0.0 3 scale 
