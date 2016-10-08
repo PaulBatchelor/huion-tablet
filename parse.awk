@@ -14,12 +14,20 @@
    
     # buttom button kind of? 
     # if ($18 == 1 && $20 == "4b") {
-
     # both buttons when the pen is down
-    if ($18 == 1 && $20 == "4c") {
+    #if ($18 == 1 && $20 == "4c") {
     #if ($18 != 3 && $18 != 0) {
         #for(i = 22; i < 24; i++) printf $(i) " "
-        print $23 $22
+
+    ## SLACKWARE VALUES
+
+    # y axis (11 bit resolution)
+    # if ($18 == 3 && $20 == 3) {
+    # x axis (11 bit resolution)
+    # if ($18 == 3 && $20 == 2) {
+    # z axis (11 bit resolution)
+    if ($18 == 3 && $20 == 18) {
+        print $20, $21, $23, $22
         printf "\n"
     }
 }
